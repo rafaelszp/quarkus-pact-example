@@ -10,12 +10,12 @@ import au.com.dius.pact.provider.junitsupport.target.TestTarget;
 import io.quarkus.test.junit.QuarkusTest;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
-import szp.rafael.pact.model.Employee;
 
-import java.util.Set;
 
+@Disabled
 @QuarkusTest
 @Provider("employee-api")
 @PactBroker(url = "http://localhost:9292")

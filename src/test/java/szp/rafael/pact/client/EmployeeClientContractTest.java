@@ -1,5 +1,6 @@
 package szp.rafael.pact.client;
 
+import static au.com.dius.pact.consumer.dsl.LambdaDsl.newJsonBody;
 import au.com.dius.pact.consumer.MockServer;
 import au.com.dius.pact.consumer.dsl.DslPart;
 import au.com.dius.pact.consumer.dsl.PactDslJsonArray;
@@ -11,11 +12,14 @@ import au.com.dius.pact.core.model.RequestResponsePact;
 import au.com.dius.pact.core.model.annotations.Pact;
 import io.quarkus.test.junit.QuarkusTest;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import szp.rafael.pact.model.Employee;
+import szp.rafael.pact.client.model.Employee;
+
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.Set;
 
 import static org.wildfly.common.Assert.assertNotNull;
@@ -28,11 +32,16 @@ public class EmployeeClientContractTest {
     @Pact(provider = "employee-api", consumer = "department-api")
     public RequestResponsePact callFindByDepartment(PactDslWithProvider builder) {
 
+
+
         DslPart body = PactDslJsonArray.arrayEachLike(1)
                 .integerType("id")
                 .stringType("name")
                 .stringType("email")
                 .integerType("departmentId")
+//                .stringType("hireDate","2022-01-01")
+//                .booleanType("active")
+
                 .closeObject();
 
         return builder.given("findByDepartmentID")
