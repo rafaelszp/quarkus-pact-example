@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+
+package example;
+
+option java_multiple_files = true;
+option java_package = "szp.rafael.pact.protos";
+option java_outer_classname = "Employee";
+
+option ruby_package = "Szp::Rafael::Protos::Employee";
+
+
+enum DepartmentType {
+  IT = 0;
+  HR = 1;
+  SALES = 2;
+}
+
+message Employee {
+  int64 id = 1;
+  string name = 2;
+  DepartmentType department_id = 5;
+
+
+  enum PhoneType {
+    PHONE_TYPE_HOME = 0; //default value 0th field
+    PHONE_TYPE_MOBILE = 1;
+    PHONE_TYPE_UNSPECIFIED = 2;
+    PHONE_TYPE_WORK = 3;
+  }
+
+  message PhoneNumber {
+    optional string number = 1;
+    optional PhoneType type = 2;
+  }
+
+  optional string email = 16;
+  optional PhoneNumber phone = 17;
+
+}
